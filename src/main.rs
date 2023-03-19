@@ -98,6 +98,7 @@ fn as_u32(arr: [u8; 4]) -> u32 {
         + (arr[3] as u32);
 }
 
+
 #[derive(Debug)]
 pub struct Image {
     image: Vec<Vec<u32>>,
