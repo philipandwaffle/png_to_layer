@@ -1,13 +1,12 @@
 use core::panic;
 use std::collections::HashMap;
-use std::fmt::format;
 use std::fs::{self, File};
 use std::path::Path;
 use std::{env, vec};
 
 use png::ColorType;
 
-// cargo run -- l floor_plan_53x53.png layer_53x53.layer 0 -1 0 -2
+// cargo run -- l layer_images/0_53x53.png layer_files/0_53x53.layer 0 -1 0 -2
 // cargo run -- n test_nav_53x53.png test_nav_53x53.nav 0 -1 0 -2
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -110,8 +109,8 @@ impl Image {
 
     fn save(&self, new_vals: Vec<f32>, dest: &Path, method: &str) {
         let data = match method {
-            "l" => format!("\{\"data\":{:?}\}", self.to_layer(new_vals)),
-            "n" => format!("\{\"graph\":{:?}\}", self.to_nav(new_vals)),
+            "l" => format!("{{\"data\":{:?}}}", self.to_layer(new_vals)),
+            "n" => format!("{{\"graph\":{:?}}}", self.to_nav(new_vals)),
             &_ => todo!(),
         };
 
