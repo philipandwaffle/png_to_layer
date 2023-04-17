@@ -7,7 +7,10 @@ use std::{env, vec};
 use png::ColorType;
 
 // cargo run -- l layer_images/0_53x53.png layer_files/0_53x53.layer 0 -1 0 -2
-// cargo run -- n test_nav_53x53.png test_nav_53x53.nav 0 -1 0 -2
+// cargo run -- n nav_images/0_53x53.png nav_files/0_53x53.nav 0 1 -1 -2
+
+// cargo run -- l layer_images/crowd_flow.png layer_files/crowd_flow.layer 0 -1 -2
+// cargo run -- n nav_images/crowd_flow.png nav_files/crowd_flow.nav 0 1 -1 -2
 fn main() {
     let args: Vec<String> = env::args().collect();
 
@@ -38,7 +41,29 @@ fn main() {
     }
 
     let image = get_image_from_path(source);
-    image.save(new_vals, dest, method);
+    image.save(new_vals.clone(), dest, method);
+    // image.save(new_vals, dest, method);
+    // image.save(new_vals.clone(), Path::new("dumping_ground/0.nav"), method);
+    // image.save(new_vals.clone(), Path::new("dumping_ground/2.nav"), method);
+    // image.save(new_vals.clone(), Path::new("dumping_ground/4.nav"), method);
+    // image.save(new_vals.clone(), Path::new("dumping_ground/6.nav"), method);
+    // image.save(new_vals.clone(), Path::new("dumping_ground/8.nav"), method);
+    // image.save(new_vals.clone(), Path::new("dumping_ground/10.nav"), method);
+    // image.save(new_vals.clone(), Path::new("dumping_ground/12.nav"), method);
+    // image.save(new_vals.clone(), Path::new("dumping_ground/14.nav"), method);
+    // image.save(new_vals.clone(), Path::new("dumping_ground/16.nav"), method);
+    // image.save(new_vals.clone(), Path::new("dumping_ground/18.nav"), method);
+
+    // image.save(new_vals.clone(), Path::new("dumping_ground/1.nav"), method);
+    // image.save(new_vals.clone(), Path::new("dumping_ground/3.nav"), method);
+    // image.save(new_vals.clone(), Path::new("dumping_ground/5.nav"), method);
+    // image.save(new_vals.clone(), Path::new("dumping_ground/7.nav"), method);
+    // image.save(new_vals.clone(), Path::new("dumping_ground/9.nav"), method);
+    // image.save(new_vals.clone(), Path::new("dumping_ground/11.nav"), method);
+    // image.save(new_vals.clone(), Path::new("dumping_ground/13.nav"), method);
+    // image.save(new_vals.clone(), Path::new("dumping_ground/15.nav"), method);
+    // image.save(new_vals.clone(), Path::new("dumping_ground/17.nav"), method);
+    // image.save(new_vals.clone(), Path::new("dumping_ground/19.nav"), method);
 }
 
 fn get_image_from_path(path: &Path) -> Image {
@@ -124,7 +149,11 @@ impl Image {
         let mut ordered_count: Vec<(u32, u32)> = self.counts.clone().into_iter().collect();
         println!("Counts: {:?}", ordered_count);
         ordered_count.sort_by(|x, y| y.1.cmp(&x.1));
-        assert!(new_vals.len() == ordered_count.len());
+        assert!(
+            new_vals.len() == ordered_count.len(),
+            "Need {} new values",
+            ordered_count.len()
+        );
         println!("Counts: {:?}", ordered_count);
 
         //create mapping
@@ -153,7 +182,11 @@ impl Image {
         let mut ordered_count: Vec<(u32, u32)> = self.counts.clone().into_iter().collect();
         println!("Counts: {:?}", ordered_count);
         ordered_count.sort_by(|x, y| y.1.cmp(&x.1));
-        assert!(new_vals.len() == ordered_count.len());
+        assert!(
+            new_vals.len() == ordered_count.len(),
+            "Need {} new values",
+            ordered_count.len()
+        );
         println!("Counts: {:?}", ordered_count);
 
         //create mapping
